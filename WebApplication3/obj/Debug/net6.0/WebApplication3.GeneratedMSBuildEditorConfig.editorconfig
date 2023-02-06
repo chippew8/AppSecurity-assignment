@@ -20,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/School_Work/AppSec-assignment/WebApplication3/Pages/errors/403.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZXJyb3JzXDQwMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/School_Work/AppSec-assignment/WebApplication3/Pages/errors/404.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcZXJyb3JzXDQwNC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/School_Work/AppSec-assignment/WebApplication3/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
