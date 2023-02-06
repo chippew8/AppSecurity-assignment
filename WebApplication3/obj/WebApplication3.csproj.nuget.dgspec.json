@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Users\\twwong\\source\\repos\\WebApplication3\\WebApplication3\\WebApplication3.csproj": {}
+    "C:\\School_Work\\AppSec-assignment\\WebApplication3\\WebApplication3.csproj": {}
   },
   "projects": {
-    "D:\\Users\\twwong\\source\\repos\\WebApplication3\\WebApplication3\\WebApplication3.csproj": {
+    "C:\\School_Work\\AppSec-assignment\\WebApplication3\\WebApplication3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\twwong\\source\\repos\\WebApplication3\\WebApplication3\\WebApplication3.csproj",
+        "projectUniqueName": "C:\\School_Work\\AppSec-assignment\\WebApplication3\\WebApplication3.csproj",
         "projectName": "WebApplication3",
-        "projectPath": "D:\\Users\\twwong\\source\\repos\\WebApplication3\\WebApplication3\\WebApplication3.csproj",
-        "packagesPath": "D:\\Users\\twwong\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\twwong\\source\\repos\\WebApplication3\\WebApplication3\\obj\\",
+        "projectPath": "C:\\School_Work\\AppSec-assignment\\WebApplication3\\WebApplication3.csproj",
+        "packagesPath": "C:\\Users\\xuanx\\.nuget\\packages\\",
+        "outputPath": "C:\\School_Work\\AppSec-assignment\\WebApplication3\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "D:\\Users\\twwong\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\xuanx\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AspNetCore.ReCaptcha": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.11, )"
@@ -61,6 +61,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
             }
           },
           "imports": [
@@ -82,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

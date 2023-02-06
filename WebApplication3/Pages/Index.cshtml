@@ -1,10 +1,117 @@
 ﻿@page
 @model IndexModel
+@inject IHttpContextAccessor contxt;
+@using Microsoft.AspNetCore.Identity
+@using WebApplication3.Model
+@using Microsoft.AspNetCore.DataProtection;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 @{
+
     ViewData["Title"] = "Home page";
+
+    var fullname = "";
+    var creditcard_encrypted = "";
+    var gender = "";
+    var mobileno = "";
+    var delivery = "";
+    var email = "";
+    var photo = "";
+    var aboutme = "";
+    var creditcard_decrypted = "";
+
+    if (SignInManager.IsSignedIn(User))
+    {
+        var user = await UserManager.GetUserAsync(User);
+        fullname = user.FullName;
+        creditcard_encrypted = user.CreditCardNo;
+        gender = user.Gender;
+        mobileno = user.PhoneNumber;
+        delivery = user.DeliveryAddress;
+        email = user.Email;
+        photo = user.photo_path;
+        aboutme = user.aboutMe;
+
+        var dataProtectionProvider = DataProtectionProvider.Create("EncryptData");
+        var protector = dataProtectionProvider.CreateProtector("MySecretKey");
+        creditcard_decrypted = protector.Unprotect(creditcard_encrypted);
+    }
 }
 
 <div class="text-center">
+    <div hidden="true">
     <h1 class="display-4">Welcome</h1>
+    <ul>
+        <li> Student id: @contxt.HttpContext.Session.GetString("Name")</li>
+        <li> Student Name: @contxt.HttpContext.Session.GetInt32("StudentId")</li>
+    </ul>
+    <form asp-controller="Home" asp-action="Index" method="post" asp-antiforgery="true">
+        <input name="txtname" type="Text" />
+        <input type="Submit" value="Submit" />
+    </form>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+    
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-6 mb-4 mb-lg-0">
+                    <div class="card mb-3" style="border-radius: .5rem;">
+                        <div class="row g-0">
+                            <div class="col-md-4 gradient-custom text-center text-white"
+                                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                 @*photo*@
+                                <img src="@photo"
+                                     alt="/uploads/baseimage.png" class="img-fluid my-5" style="width: 80px;" />
+                                @*name*@
+                                <h5 style="color:black">@fullname</h5>
+                                @*aboutme*@
+                            <p style="color:black">@aboutme</p>
+                                <i class="far fa-edit mb-5"></i>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body p-4">
+                                    <h6>Information</h6>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        @*email*@
+                                        <div class="col-6 mb-3">
+                                            <h6>Email</h6>
+                                            <p class="text-muted">@email</p>
+                                        </div>
+                                        @*mobile*@
+                                        <div class="col-6 mb-3">
+                                            <h6>Phone</h6>
+                                            <p class="text-muted">@mobileno</p>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-1">
+                                        @*credit*@
+                                        <div class="col-6 mb-3">
+                                            <h6>Credit Card</h6>
+                                            <p class="text-muted">@creditcard_decrypted</p>
+                                        </div>
+                                        @*gender*@
+                                        <div class="col-6 mb-3">
+                                            <h6>Gender</h6>
+                                            <p class="text-muted">@gender</p>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-1">
+                                        @*address*@
+                                        <div class="col-6 mb-3">
+                                            <h6>Delivery Address</h6>
+                                            <p class="text-muted">@delivery</p>
+                                        </div>
+
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>

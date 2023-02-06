@@ -1,0 +1,69 @@
+﻿@page
+@model WebApplication3.Pages.LoginModel
+@using Microsoft.Extensions.Configuration
+@using Microsoft.Extensions.Options
+@using WebApplication3.Core
+@inject IOptions<GoogleCaptchaConfig> GoogleCaptchaConfig
+
+<div class="container mt-5">
+
+	<div class="row justify-content-center align-items-center">
+
+		<div class="col-sm-12 col-md-12 col-lg-4">
+			<h1 class="mb-3">Login </h1>
+
+			<form method="post" >
+				<div asp-validation-summary="All" class="text-danger"></div>
+
+				<input type="hidden" id="LoginViewModelToken" asp-for="LModel.Token"/>
+				@*email input*@
+				<div class="mb-3">
+					<label class="form-label" asp-for="LModel.Email">Email Address</label>
+					<input type="Text" asp-for="LModel.Email" class="form-control" />
+					<span asp-validation-for="LModel.Email" class="text-danger"></span>
+				</div>
+
+				@*password input*@
+				<div class="mb-3">
+					<label class="form-label" asp-for="LModel.Password">Password</label>
+					<input type="Text" asp-for="LModel.Password" class="form-control" />
+					<span asp-validation-for="LModel.Password" class="text-danger"></span>
+				</div>
+
+				@*remember me button*@
+				<div class="mb-3 form-check">
+					<input type="checkbox" asp-for="LModel.RememberMe" class="form-check-input" />
+					<label class="form-check-label" asp-for="LModel.RememberMe">Remember Me?</label>
+				</div>
+
+				@*submit button*@
+				<div class="mb-3">
+					<button type="submit" class="btn btn-primary">Login</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+@section Scripts
+	{
+		<script src="https://www.google.com/recaptcha/api.js?render=@GoogleCaptchaConfig.Value.SiteKey"></script>
+		<script>
+			function getToken(){
+				grecaptcha.ready(function() {
+					grecaptcha.execute('@GoogleCaptchaConfig.Value.SiteKey', {action: 'submit'}).then(function(token) {
+						console.log(token);
+						document.getElementById("LoginViewModelToken").value = token;
+					});
+				});
+			}
+
+			setInterval(getToken,115000);
+			$(function(){
+				getToken();
+			});
+		</script>
+
+		
+}

@@ -1,26 +1,32 @@
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using WebApplication3.Model;
 using WebApplication3.ViewModels;
+using System.Text.RegularExpressions;
+ 
 
 namespace WebApplication3.Pages
 {
     public class RegisterModel : PageModel
     {
 
-        private UserManager<IdentityUser> userManager { get; }
-        private SignInManager<IdentityUser> signInManager { get; }
+        private UserManager<ApplicationUser> userManager { get; }
+        private SignInManager<ApplicationUser> signInManager { get; }
+        private IWebHostEnvironment env;
 
         [BindProperty]
         public Register RModel { get; set; }
 
-        public RegisterModel(UserManager<IdentityUser> userManager,
-        SignInManager<IdentityUser> signInManager)
+
+        public RegisterModel(UserManager<ApplicationUser> userManager,
+        SignInManager<ApplicationUser> signInManager, IWebHostEnvironment environment)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            env = environment;
         }
-
 
 
         public void OnGet()
@@ -30,22 +36,62 @@ namespace WebApplication3.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
+			
+			if (ModelState.IsValid)
             {
-                var user = new IdentityUser()
+                var uploadsFolder = "uploads";
+                var imageFile = "";
+                var imagePath = "";
+                var check = Regex.IsMatch(RModel.PhotoPath.FileName, @".\.(jpg|jpeg|JPG|JPEG)$");
+                if (check)
                 {
-                    UserName = RModel.Email,
-                    Email = RModel.Email
-                };
-                var result = await userManager.CreateAsync(user, RModel.Password);
-                if (result.Succeeded)
-                {
-                    await signInManager.SignInAsync(user, false);
-                    return RedirectToPage("Index");
+                    if (RModel.PhotoPath != null)
+                    {
+                        if (RModel.PhotoPath.Length > 2 * 1024 * 1024)
+                        {
+                            ModelState.AddModelError("RModel.PhotoPath", "File size cannot exceed 2MB");
+                            return Page();
+                        }
+                        imageFile = Guid.NewGuid() + Path.GetExtension(RModel.PhotoPath.FileName);
+                        imagePath = Path.Combine(env.ContentRootPath, "wwwroot", uploadsFolder, imageFile);
+
+                    }
+
+                    var dataProtectionProvider = DataProtectionProvider.Create("EncryptData");
+                    var protector = dataProtectionProvider.CreateProtector("MySecretKey");
+
+                    // making app user
+                    var user = new ApplicationUser()
+                    {
+                        UserName = RModel.Email,
+                        FullName = RModel.FullName,
+                        CreditCardNo = protector.Protect(RModel.CreditCardNo),
+                        Gender = RModel.Gender,
+                        PhoneNumber = RModel.PhoneNumber,
+                        DeliveryAddress = RModel.DeliveryAddress,
+                        Email = RModel.Email,
+                        photo_path = string.Format("/{0}/{1}", uploadsFolder, imageFile),
+                        aboutMe = RModel.AboutMe
+                    };
+                    var result = await userManager.CreateAsync(user, RModel.Password);
+                    if (result.Succeeded)
+                    {
+                        // upload image
+                        using var fileStream = new FileStream(imagePath, FileMode.Create);
+                        await RModel.PhotoPath.CopyToAsync(fileStream);
+
+                        await signInManager.SignInAsync(user, false);
+                        return RedirectToPage("Index");
+                    }
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
                 }
-                foreach (var error in result.Errors)
+                else
                 {
-                    ModelState.AddModelError("", error.Description);
+                    ModelState.AddModelError("RModel.PhotoPath", "File needs to be a jpg file");
+                    return Page();
                 }
             }
             return Page();

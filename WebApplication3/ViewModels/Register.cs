@@ -5,8 +5,22 @@ namespace WebApplication3.ViewModels
 {
     public class Register
     {
-
-        [Required]
+		[Required]
+		[DataType(DataType.Text)]
+		public string FullName { get; set; }
+		[Required]
+		[DataType(DataType.CreditCard)]
+		public string CreditCardNo { get; set; }
+		[Required]
+		[DataType(DataType.Text)]
+		public string Gender { get; set; }
+		[Required]
+		[DataType(DataType.PhoneNumber)]
+		public string PhoneNumber { get; set; }
+		[Required]
+		[DataType(DataType.Text)]
+		public string DeliveryAddress { get; set; }
+		[Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
@@ -19,6 +33,11 @@ namespace WebApplication3.ViewModels
         [Compare(nameof(Password), ErrorMessage = "Password and confirmation password does not match")]
         public string ConfirmPassword { get; set; }
 
+		[Required]
+		public IFormFile? PhotoPath { get; set; }
 
+		[Required]
+		[DataType(DataType.Text)]
+		public string AboutMe { get; set; }
     }
 }
