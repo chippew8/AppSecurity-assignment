@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/Qo9N4kL4uIex04AcgCWO3LmJ4NLcUIoDwZgI7p5wBQ=",
+  "Hash": "aoljUNSB6n4+f8ioc6ExxxTQNBwbBNwR5CBaFTU9/P4=",
   "Source": "WebApplication3",
   "BasePath": "_content/WebApplication3",
   "Mode": "Default",
@@ -1137,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\c98d873c-5112-44b0-9906-360ff7675460.jpg"
+    },
+    {
+      "Identity": "C:\\School_Work\\AppSec-assignment\\WebApplication3\\wwwroot\\uploads\\cb38c7fb-d651-49ad-83d7-a4b77c0f30a2.jpg",
+      "SourceId": "WebApplication3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\School_Work\\AppSec-assignment\\WebApplication3\\wwwroot\\",
+      "BasePath": "_content/WebApplication3",
+      "RelativePath": "uploads/cb38c7fb-d651-49ad-83d7-a4b77c0f30a2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\cb38c7fb-d651-49ad-83d7-a4b77c0f30a2.jpg"
     }
   ]
 }

@@ -40,18 +40,15 @@
 }
 
 <div class="text-center">
-    <div hidden="true">
     <h1 class="display-4">Welcome</h1>
     <ul>
-        <li> Student id: @contxt.HttpContext.Session.GetString("Name")</li>
-        <li> Student Name: @contxt.HttpContext.Session.GetInt32("StudentId")</li>
+        <li> @contxt.HttpContext.Session.GetString("Name")</li>
     </ul>
-    <form asp-controller="Home" asp-action="Index" method="post" asp-antiforgery="true">
+   @* <form asp-controller="Home" asp-action="Index" method="post" asp-antiforgery="true">
         <input name="txtname" type="Text" />
         <input type="Submit" value="Submit" />
-    </form>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    </div>
+    </form>*@
+    
     
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">

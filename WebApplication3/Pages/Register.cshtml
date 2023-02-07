@@ -1,5 +1,9 @@
 ﻿@page
 @model WebApplication3.Pages.RegisterModel
+@using (Html.BeginForm("Login", "Index"))
+{
+	@Html.AntiForgeryToken()
+}
 @{
 }
 
@@ -10,9 +14,10 @@
 		<div class="col-sm-12 col-md-12 col-lg-4">
 			<h1 class="mb-3">Register </h1>
 
-			<form method="post" enctype="multipart/form-data">
+			<form method="post" enctype="multipart/form-data" asp-antiforgery="true" >
+				@Html.AntiForgeryToken()
 				<div asp-validation-summary="All" class="text-danger"></div>
-				
+
 				@*Full name field*@
 				<div class="mb-3">
 					<label class="form-label" asp-for="RModel.FullName">Full Name</label>

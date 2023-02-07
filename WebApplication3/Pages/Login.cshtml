@@ -4,7 +4,10 @@
 @using Microsoft.Extensions.Options
 @using WebApplication3.Core
 @inject IOptions<GoogleCaptchaConfig> GoogleCaptchaConfig
-
+@using (Html.BeginForm("Login", "Index"))
+{
+	@Html.AntiForgeryToken()
+}
 <div class="container mt-5">
 
 	<div class="row justify-content-center align-items-center">
@@ -12,7 +15,8 @@
 		<div class="col-sm-12 col-md-12 col-lg-4">
 			<h1 class="mb-3">Login </h1>
 
-			<form method="post" >
+			<form method="post" asp-antiforgery="true">
+				@Html.AntiForgeryToken()
 				<div asp-validation-summary="All" class="text-danger"></div>
 
 				<input type="hidden" id="LoginViewModelToken" asp-for="LModel.Token"/>

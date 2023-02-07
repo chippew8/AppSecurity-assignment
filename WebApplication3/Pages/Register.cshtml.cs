@@ -15,18 +15,20 @@ namespace WebApplication3.Pages
         private UserManager<ApplicationUser> userManager { get; }
         private SignInManager<ApplicationUser> signInManager { get; }
         private IWebHostEnvironment env;
+		private readonly IHttpContextAccessor contxt;
 
-        [BindProperty]
+		[BindProperty]
         public Register RModel { get; set; }
 
 
         public RegisterModel(UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager, IWebHostEnvironment environment)
+        SignInManager<ApplicationUser> signInManager, IWebHostEnvironment environment, IHttpContextAccessor httpContextAccessor)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             env = environment;
-        }
+			contxt = httpContextAccessor;
+		}
 
 
         public void OnGet()
@@ -81,7 +83,8 @@ namespace WebApplication3.Pages
                         await RModel.PhotoPath.CopyToAsync(fileStream);
 
                         await signInManager.SignInAsync(user, false);
-                        return RedirectToPage("Index");
+						contxt.HttpContext.Session.SetString("Name", RModel.Email);
+						return RedirectToPage("Index");
                     }
                     foreach (var error in result.Errors)
                     {

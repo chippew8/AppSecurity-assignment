@@ -261,6 +261,10 @@
       "PackagePath": "staticwebassets\\uploads\\c98d873c-5112-44b0-9906-360ff7675460.jpg"
     },
     {
+      "Id": "C:\\School_Work\\AppSec-assignment\\WebApplication3\\wwwroot\\uploads\\cb38c7fb-d651-49ad-83d7-a4b77c0f30a2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\cb38c7fb-d651-49ad-83d7-a4b77c0f30a2.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.WebApplication3.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
