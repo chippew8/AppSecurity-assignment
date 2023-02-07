@@ -7,7 +7,7 @@ namespace WebApplication3.ViewModels
     {
 		[Required]
 		[DataType(DataType.Text)]
-		[RegularExpression(@"[a-zA-z]", ErrorMessage = "Cannot have special characters in Full Name")]
+		[RegularExpression(@"^[a-z,.'-]+$/i", ErrorMessage = "Cannot have special characters in Full Name")]
 		public string FullName { get; set; }
 		[Required]
 		[DataType(DataType.CreditCard)]
@@ -19,7 +19,7 @@ namespace WebApplication3.ViewModels
 		public string Gender { get; set; }
 		[Required]
 		[DataType(DataType.PhoneNumber)]
-		[RegularExpression(@"[0-9]{9,9}", ErrorMessage = "Phone number is Invalid")]
+		[RegularExpression(@"[0-9]{8,8}", ErrorMessage = "Phone number is Invalid")]
 		public string PhoneNumber { get; set; }
 		[Required]
 		[DataType(DataType.Text)]

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\School_Work\\AppSec-assignment\\WebApplication3\\WebApplication3.csproj": {}
+    "C:\\School_Work\\AppSecurity-assignment\\WebApplication3\\WebApplication3.csproj": {}
   },
   "projects": {
-    "C:\\School_Work\\AppSec-assignment\\WebApplication3\\WebApplication3.csproj": {
+    "C:\\School_Work\\AppSecurity-assignment\\WebApplication3\\WebApplication3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\School_Work\\AppSec-assignment\\WebApplication3\\WebApplication3.csproj",
+        "projectUniqueName": "C:\\School_Work\\AppSecurity-assignment\\WebApplication3\\WebApplication3.csproj",
         "projectName": "WebApplication3",
-        "projectPath": "C:\\School_Work\\AppSec-assignment\\WebApplication3\\WebApplication3.csproj",
+        "projectPath": "C:\\School_Work\\AppSecurity-assignment\\WebApplication3\\WebApplication3.csproj",
         "packagesPath": "C:\\Users\\xuanx\\.nuget\\packages\\",
-        "outputPath": "C:\\School_Work\\AppSec-assignment\\WebApplication3\\obj\\",
+        "outputPath": "C:\\School_Work\\AppSecurity-assignment\\WebApplication3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\xuanx\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -86,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
